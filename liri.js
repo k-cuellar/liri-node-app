@@ -74,13 +74,35 @@ function retrieveOMDB(movie) {
 
     var queryString = "http://www.omdbapi.com/?t=" + search + "&plot=full&tomatoes=true";
 
-    
+    request(queryString, function (error, response, body) {
+        if(error) {
+            console.log(error);
+        } else {
+            var data = JSON.parse(body);
+            var outputString = "\nMovie Information:"
+                                + "\nMovie Title: " + data.Title
+                                + "\nYear Released: " + data.Released
+                                + "\n IMDB Rating: " + data.imdbRating
+                                + "\nRotten Tomatoes Rating: " + data.tomatoRating
+                                + "\nCountry Produced: " + data.Country
+                                + "\nLanguage: " + data.Language
+                                + "\nPlot: " + data.Plot
+                                + "\nActors: " + data.Actors;
+            console.log(outputString);
+        }
+    })
 
 }
 
 //do what it says function
 function doWhatItSays() {
-
+    fs.readFile("./random.txt", "utf8", function (error, data) {
+        if (error) {
+            console.log(error);
+        } else {
+            
+        }
+    })
 }
 
 
