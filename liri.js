@@ -36,8 +36,8 @@ function retrieveTweets() {
 function spotifySong(song) {
 
     var spotify = new Spotify(keys.spotify);
-    var search;
-
+    
+    var search = "";
     if (song === "") {
         search = "The Sign Ace of Base";
     } else {
@@ -102,7 +102,23 @@ function doWhatItSays() {
         if (error) {
             console.log(error);
         } else {
+            var cmdString = data.split(',');
+			var command = cmdString[0].trim();
+            var param = cmdString[1].trim();
             
+            switch(command) {
+				case 'my-tweets':
+					retrieveTweets(); 
+					break;
+
+				case 'spotify-this-song':
+					spotifySong(param);
+					break;
+
+				case 'movie-this':
+					retrieveOBDBInfo(param);
+					break;
+			}
         }
     })
 }
@@ -110,7 +126,7 @@ function doWhatItSays() {
 // Read in the command line arguments
 var cmdArgs = process.argv;
 
-// The parameter to the LIRI command may contain spaces
+// the second command line argument will have spaces, keep it all as variable liriArg2
 var liriArg2 = '';
 for (var i = 3; i < cmdArgs.length; i++) {
 	liriArg2 += cmdArgs[i] + ' ';
@@ -130,5 +146,5 @@ else if (input === "do-what-it-says") {
     doWhatItSays();
 } 
 else {
-    console.log("\nThat's not a Liri command! Try one of the following:" + "\nmy-tweets, spotify-this-song '<song_name>', movie-this, OR do-what-it-says")
+    console.log("\nThat's not a Liri command! Try one of the following:" + "\nmy-tweets, spotify-this-song <song_name>, movie-this, OR do-what-it-says")
 }
