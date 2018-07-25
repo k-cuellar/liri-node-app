@@ -3,6 +3,7 @@
 LIRI App (Language Interpretation and Recognition Interface)
 
 Type in one of the following 4 commands to search for things:
+
 *"my-tweets" : Will display up to 20 of my latest tweets.
 *"spotify-this-song '<song name>'" : Will search Spotify for that song and return information about it as well as a preview (if available).
 *"movie-this" : Will return information on that movie including the release year, list of actors, production country, and plot.
